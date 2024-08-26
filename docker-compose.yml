@@ -2,12 +2,14 @@ version: '3'
 
 services:
   postgres:
-    container_name: "posgres"
+    container_name: "postgres"
     image: postgres
     ports:
-      - 5432:5433
+      - 5432:5432
     environment:
-      - POSTGRES_PASSWORD:"root"
-      - POSTGRES_USER:"root"
-      
-  
+      - POSTGRES_DB=pos
+      - POSTGRES_PASSWORD=123Pssw0rd!
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    volumes:
+      - ./pos.sql:/docker-entrypoint-initdb.d/init.sql
+     
